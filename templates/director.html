@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Movies List</title>
+</head>
+<body>
+<h2>
+    Movies List
+</h2>
+
+{% if movie_list %}
+    <ul>
+    {% for movie in movie_list %}
+        <li><a href="/list/{{ movie.id }}/">{{ movie.name }}</a>   {{ movie.price }} zl</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No lists are available.</p>
+{% endif %}
+
+Sort by:
+</body>
+</html>
+{% endblock %}

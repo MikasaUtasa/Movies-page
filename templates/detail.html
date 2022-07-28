@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+
+<p>
+<a href="{% url 'list' %}">Back to list</a>
+</p>
+</body>
+</html>
+
+<h3>{{ movie }}</h3>
+<p>Release date: {{ date }} </p>
+    <p>Director: <a href="/list/director/{{ director.id }}/">{{ director.name }}</a></p>
+    <p>{{ description }}</p>
+<p>Ticket price: {{ price }}</p>
+<p>    Categories:
+    {% for item in category %}
+    <p> {{ item }}</p>
+{% endfor %}
+    </p>
+{% endblock %}

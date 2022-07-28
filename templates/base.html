@@ -1,0 +1,25 @@
+<!--users/templates/base.html-->
+
+<style>
+    label, input {
+        display: block;
+    }
+    span.helptext {
+        display: none;
+    }
+</style>
+
+<h1><a href="{% url 'main' %}">FILMYY</a></h1>
+
+
+{% if user.is_authenticated %}
+<p>Hello <a href="{% url 'user_panel' %}">{{ user.username|default:'Guest' }}</a>!</p>
+    {% else %}
+    <p><a href="{% url 'login' %}">Log in</a></p>
+    <a href="{% url 'register' %}">Register</a>
+{% endif %}
+
+
+
+{% block content %}
+{% endblock %}

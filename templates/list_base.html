@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{% block content %}
+    <head>
+    <meta charset="UTF-8">
+    <title>Movies List</title>
+</head>
+<body>
+<h2>
+    Movies List
+</h2>
+
+<form action="{% url 'search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
+{% block content1 %}
+{% endblock %}
+
+Sort by:
+</body>
+</html>
+
+{% endblock %}
+
