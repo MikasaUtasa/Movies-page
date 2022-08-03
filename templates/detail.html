@@ -19,6 +19,28 @@
 <p>Release date: {{ date }} </p>
     <p>Director: <a href="/list/director/{{ director.id }}/">{{ director.name }}</a></p>
     <p>{{ description }}</p>
+<p>Grade: {{ grade }}</p>
+    <p>Vote:</p>
+
+    <form method="post">
+    {% csrf_token %}
+    <div class="col-md-4">
+    <div class="form-group">
+    <label>Vote</label>
+        <label>
+            <select name="vote" class="selectpicker" data-title="Select Vote" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+            {% for x,y in form.fields.grade.choices %}
+               <option value="{{ x }}"{% if form.fields.grade.value == x %} selected{% endif %}>{{ y }}</option>
+            {% endfor %}
+            </select>
+        </label>
+
+    </div>
+</div>
+  <input type="submit" value="Vote!">
+</form>
+
+
 <p>Ticket price: {{ price }}</p>
 <p>    Categories:
     {% for item in category %}

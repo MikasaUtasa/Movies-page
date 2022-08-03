@@ -1,12 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 #class User(models.Model):
 #    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-
+GRADES = ((0,0),
+          (1,1),
+          (2,2),
+          (3,3),
+          (4,4),
+          (5,5),
+          (6,6),
+          (7,7),
+          (8,8),
+          (9,9),
+          (10,10)
+          )
 
 
 class Director(models.Model):
@@ -24,6 +35,20 @@ class Film(models.Model):
     category = models.ManyToManyField('Category')
     def __str__(self):
         return self.name
+
+class Review(models.Model):
+    grade = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)], choices=GRADES)
+    movie = models.ForeignKey(Film, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return "{}'grade".format(self.movie.name)
+
+    #def get_avg(self, movie):
+    #    count = len(self.objects.filter(movie=movie))
+    #    sm = sum(self.objects.filter(movie=movie))
+    #    avg = sm/count
+    #    return avg
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
